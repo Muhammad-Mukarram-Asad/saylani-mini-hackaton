@@ -162,8 +162,8 @@
             <nav class="navbar navbar-light bg-light justify-content-between">
                 <a class="navbar-brand">Enter the student roll number:</a>
                 <div class="form-inline">
-                    <input id="search_id" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button onclick="getCard()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <input id="search_id" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onchange="real()">
+                    <button  class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </div>
             </nav>
 
@@ -180,28 +180,29 @@
                    
                         <div id="std_data" class="col-12">
                             <label id="std_label">Name:</label>
-                            <p> Mukarram</p>
+                            <p id="p_name"> Mukarram</p>
                         </div>
 
                         <div id="std_data" class="col-12">
                             <label id="std_label">Father Name:</label>
-                            <p> Asad</p>
+                            <p id="p_fname"> Asad</p>
                         </div>
 
                         <div id="std_data" class="col-12">
                             <label id="std_label">Course:</label>
-                            <p> Web and App</p>
+                            <p id="p_course"> Web and App</p>
                         </div>
 
                         <div id="std_data" class="col-12">
                             <label id="std_label">ID:</label>
-                            <p> KH0102089635</p>
+                            <p id="p_roll"> KH0102089635</p>
                         </div>
 
                         <div id="std_data" class="col-12">
                             <label id="std_label">Batch:</label>
-                            <p> 08</p>
+                            <p id="p_batch"> 08</p>
                         </div> 
+
                     </div>
         </div>
         </div>
