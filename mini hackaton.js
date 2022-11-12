@@ -4,17 +4,17 @@ import {
   postClassDetailsToDB,
   postStudentDetailsToDB,
   options,
-  getRealtimeCard
+  realTime
 } from "./mini hackaton firebase.js";
 
-// async function course(){
-//     const course = await options()
-//     const selectElement = document.getElementById("select_course");
-//     for (let item of course) {
-//         selectElement.innerHTML+=`<option selected value="Course ${item.course_name} / Time ${item.c_time} / Schedule${item.c_schedule} / Batch: ${item.b_number}"> Course: ${item.course_name} / Time: ${item.c_time} / Schedule: ${item.c_schedule} / Batch: ${item.b_number} </option>`
-//     }
-// }
-// course();
+async function course(){
+    const course = await options()
+    const selectElement = document.getElementById("select_course");
+    for (let item of course) {
+        selectElement.innerHTML+=`<option selected value="${item.course_name},${item.c_time},${item.c_schedule},${item.b_number}"> Course: ${item.course_name} / Time: ${item.c_time} / Schedule: ${item.c_schedule} / Batch: ${item.b_number} </option>`
+    }
+}
+course();
 
 window.signIn = async function () {
   let email = document.getElementById("email");
@@ -55,7 +55,7 @@ window.studentData = async function () {
   let r_num = document.getElementById("roll_number").value;
   let contact_num = document.getElementById("contact_number").value;
   let cnic_num = document.getElementById("cnic_number").value;
-  let st_course_name = document.getElementById("course_name").value;
+  let st_course_name = document.getElementById("select_course").value;
   let image = document.getElementById("picture").files[0];
   let homePage_div = document.getElementById('homePage');
   let student_form = document.getElementById("student_form");
@@ -111,33 +111,22 @@ window.classData = async function() {
     class_form.style.display = "none";
 };
 
-window.getCard =  function()
-{
-  let search_id = document.getElementById('search_id').value;
-      getRealtimeCard(search_id);
-      console.log("matched");
 
-    const adsElem = document.getElementById('student_info')
-
-    adsElem.innerHTML = ''
-    for (let item of student_details) {
-        adsElem.innerHTML +=`
-        <div onclick="goToDetail('${item.id}')" class="ads_styling">
-          <label id="ads_styling_label">Image: </label> 
-           <img src=${item.imageURL} width='350px' height='180px'>
-           <label id="ads_styling_label">Product Title: </label> 
-           <h2>${item.title} </h2>
-           <label id="ads_styling_label">Product Description: </label> 
-           <h2> Description: ${item.description} </h2>
-           <label id="ads_styling_label">Product Price: </label> 
-           <h2> Price: ${item.price} </h2>
-           <label id="ads_styling_label">Product Seller Id: </label> 
-           <h2> Owner Id: ${item.userId} </h2>
-    </div>`
-    }
-    
-  }
   
+
+  window.real = function(){
+    let name = document.getElementById('p_name')
+    let fname = document.getElementById('p_fname')
+    let roll = document.getElementById('p_roll')
+    let course =document.getElementById('p_course')
+    let batch =document.getElementById('p_batch')
+    console.log('hi')
+
+    var id= document.getElementById('search_id').value
+    let tem =  realTime(id,name,fname,course,roll,batch)
+    
+    console.log(tem)
+}
 
 
 
