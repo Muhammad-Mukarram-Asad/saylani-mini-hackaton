@@ -114,16 +114,26 @@ function getRealtimeCard(roll_number) {
   
   }
 
-  function getRealtimeAds(callback) {
-    //2
-    onSnapshot(collection(db, "ads"), (querySnapshot) => {
-        const ads = []
-  
-        querySnapshot.forEach((doc) => {
-            ads.push({ id: doc.id, ...doc.data() })
-        });
-        //3
-        callback(ads)
-    })
-  }
-export { signInFirebase, uploadImage, postClassDetailsToDB, postStudentDetailsToDB, options,getRealtimeCard};
+  function realTime(Id,name,fname,course,roll,batch){
+    const q = query(collection(db, "students_log"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if(doc.data().r_num == Id){
+          name.innerHTML= doc.data().s_name
+          fname.innerHTML=doc.data().f_name
+          roll.innerHTML=doc.data().r_num
+          
+          let tem = doc.data().st_course_name.split(',')
+          tem.join('')
+          console.log(tem);
+          course.innerHTML= tem[0]
+          batch.innerHTML= tem[3]
+          
+        }
+      });
+      // const result = cities.filter(word => word.roll == Id);
+      // console.log(result)
+    });
+    }
+
+export { signInFirebase, uploadImage, postClassDetailsToDB, postStudentDetailsToDB, options,realTime};
